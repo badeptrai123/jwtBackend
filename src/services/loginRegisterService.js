@@ -67,11 +67,6 @@ const registerNewUser = async (userData) => {
 };
 const loginUser = async (userData) => {
   try {
-    console.log(
-      await db.User.findAll({
-        raw: true,
-      })
-    );
     const user = await db.User.findOne({
       where: {
         [Op.or]: [
@@ -80,7 +75,6 @@ const loginUser = async (userData) => {
         ],
       },
     });
-    console.log("login...");
     if (user) {
       console.log(user);
       const isPasswordCorrect = checkPassword(userData.password, user.password);
